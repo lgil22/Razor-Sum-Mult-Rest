@@ -1,0 +1,53 @@
+﻿@page "/Calculator"
+@using Calculator.Entidades
+
+
+<h3>Calculator</h3>
+
+<EditForm Model="algoritmo" OnValidSubmit="Calcular">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <p class="=numero1">
+            Primer Numero: <InputNumber @bind-Value="algoritmo.Num1" class="form-control" />
+        </p>
+        <p class="numero2">
+            Segundo Numero: <InputNumber @bind-Value="algoritmo.Num2" class="form-control" />
+        </p>
+        <p class="suma">
+            La Suma es: <InputNumber @bind-Value="algoritmo.ResultadoSuma" class="form-control" readonly="true" />
+        </p>
+        <p class="resta">
+            La Resta es: <InputNumber @bind-Value="algoritmo.ResultadoResta" class="form-control" readonly="true" />
+        </p>
+        <p class="multiplicacion">
+            La Multiplicación es: <InputNumber @bind-Value="algoritmo.ResultadoMultiplicacion" class="form-control" readonly="true" />
+        </p>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success" @onclick="Calcular">
+            Calcular
+        </button>
+    </div>
+
+</EditForm>
+
+
+@code {
+
+    Algoritmo algoritmo = new Algoritmo();
+
+
+    private void Calcular()
+    {
+        float AuxNum1 = algoritmo.Num1;
+        float AuxNum2 = algoritmo.Num2;
+        algoritmo.ResultadoSuma = AuxNum1 + AuxNum2;
+        algoritmo.ResultadoResta = AuxNum1 - AuxNum2;
+        algoritmo.ResultadoMultiplicacion = AuxNum1 * AuxNum2;
+
+    }
+
+}
